@@ -1,0 +1,49 @@
+{% extends 'siteadmin/layout.html' %}
+{% block admin_body %}
+<ul class="flex flex-wrap space-x-5">
+    <a href="{% url 'ManageCategoryPage' %}">
+        <div class="text-center border rounded-md shadow-md p-4 cursor-pointer setting_menu ">
+            <i class="fas fa-sitemap text-2xl py-4"></i>
+            <p>
+                Manage Category
+            </p>
+        </div>
+    </a>
+
+    <a href="{% url 'ManageProductPage' %}">
+        <div class="text-center border rounded-md shadow-md p-4 cursor-pointer setting_menu">
+            <i class="fas fa-sitemap text-2xl py-4"></i>
+            <p>
+                Manage Products
+            </p>
+        </div>
+    </a>
+
+    <a href="{% url 'ManageCategoryPage' %}">
+        <div class="text-center border rounded-md shadow-md p-4 cursor-pointer setting_menu">
+            <i class="fas fa-sitemap text-2xl py-4"></i>
+            <p>
+                Feature Products
+            </p>
+        </div>
+    </a>
+
+
+
+    <a href="{% url 'ManageCategoryPage' %}">
+        <div class="text-center border rounded-md shadow-md p-4 cursor-pointer setting_menu">
+            <i class="fas fa-sitemap text-2xl py-4"></i>
+            <p>Manage Feature Products</p>
+        </div>
+    </a>
+
+
+    <a href="{% url 'ManageCategoryPage' %}">
+        <div class="text-center border  rounded-md shadow-md p-4 cursor-pointer setting_menu">
+            <i class="far fa-user text-2xl py-4"></i>
+            <p>Manage User</p>
+        </div>
+    </a>
+
+</ul>
+{% endblock admin_body %}

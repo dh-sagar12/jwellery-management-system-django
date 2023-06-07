@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block body %} 
+    {% include 'home/navbar.html' %}
+    <div class='user_body'>
+        {% block user_body %}
+
+        {% endblock user_body %}
+    </div>
+
+    <hr>
+    {% include 'home/footer.html' %}
+
+{% endblock body %}

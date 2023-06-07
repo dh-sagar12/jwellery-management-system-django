@@ -1,0 +1,91 @@
+{% extends 'home/layout.html' %}
+{% load static %}
+
+{% block title %}
+Home- Jwellery Management
+{% endblock title %}
+
+{% block user_body %}
+
+
+<div class="owl-carousel ">
+    {% for images in banner_images %}
+    <div class="">
+        <div style="background-image: url({{images.banner_image.url}}); background-repeat: no-repeat; background-position: center; background-size: cover;"
+            class="">
+
+            <br>
+            <br>
+            <div class="text-center pt-28 text-xl text-white uppercase pb-5">
+                <p>{{images.banner_title}}</p>
+                <button class="bg-purple-600 py-1 px-4 text-sm cursor-pointer">
+                    <a href="{{images.banner_redirect_url}}">Browse</a>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+<hr class='my-2'>
+
+<div class='featured_product  px-12 pb-12 pt-3 '>
+    <h3 class='text-center text-2xl sm:text-3xl font-dwarika my-9'>Featured Product</h3>
+    <div class='grid grid-cols-2  grid-flow-col gap-4 justify-items-center m-15'>
+
+        <div class='border col-span-1  flex items-end  relative top-0 cursor-pointer overflow-hidden '>
+            <img src="{{main_feature_item.feature_image.url}}" alt="feature image" class=" rounded-md feature_items h-full" >
+            <div class="text-white  flex-col space-y-4 mx-4 mb-10 absolute hidden feature_para " >
+                <h3 class="text-2xl">{{main_feature_item.title}}</h3>
+                <p class="text-sm">{{main_feature_item.description}}</p>
+                <a href="{{main_feature_item.redirect_url}}" class="font-dwarika" >View Collections</a>
+            </div>
+        </div>
+
+
+        <div class=' grid grid-cols-2 grid-gap-2 '>
+
+            {% for items  in other_feature_item %}
+
+            <div class='border col-span-1  flex items-end  relative top-0 cursor-pointer overflow-hidden feature_items'>
+                <img src="{{items.feature_image.url}}" class=" rounded-md feature_items" >
+                <div class="text-white  flex-col space-y-3 p-4 absolute w-full h-full hidden feature_para bg-purple-300" >
+                    <h3 class="text-2xl">{{items.title}}</h3>
+                    <p class="text-sm">{{items.description}}</p>
+                    <a href="{{items.redirect_url}}" class="font-dwarika pb-3 underline" >View Product</a>
+                </div>
+            </div>
+
+            {% endfor %}
+            
+
+            
+
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    var owl = $('.owl-carousel');
+    owl.owlCarousel({
+        items: 1,
+        loop: true,
+        margin: 10,
+        autoplay: true,
+        autoplayTimeout: 3000,
+        autoplayHoverPause: true
+    });
+    $('.play').on('click', function () {
+        owl.trigger('play.owl.autoplay', [1000])
+    })
+    $('.stop').on('click', function () {
+        owl.trigger('stop.owl.autoplay')
+    })
+</script>
+
+{% endblock user_body %}

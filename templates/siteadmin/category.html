@@ -1,0 +1,48 @@
+{% extends 'siteadmin/layout.html' %}
+{% load static %}
+{% block admin_body %}
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+
+<h2 class='text-2xl font-bold py-2'>Manage Catogories</h2>
+<div class='py-2 '>
+  <button class='px-4 py-1 bg-purple-600 text-white'>
+    <a href="{% url 'AddCategoryPage' %}">Add New</a>
+  </button>
+</div>
+<div>
+  <table>
+    <tr>
+      <th>Category Name</th>
+      <th>Redirect URL</th>
+      <th>Active</th>
+    </tr>
+
+    {% for category in category_data %}
+    <tr>
+      <td><a href="{% url 'EditCategory' category.id %}" class='hover:underline semi-bold'>{{category.category_name}}</a></td>
+      <td>{{category.category_url_name}}</td>
+      <td>{{category.is_active}}</td>
+    </tr>
+    {% endfor %}
+
+  </table>
+</div>
+
+{% endblock admin_body %}

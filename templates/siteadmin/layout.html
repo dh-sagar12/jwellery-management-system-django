@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% load static %} {% block body %} 
+<div>
+  <!-- ===== Preloader Start ===== -->
+  <!-- ===== Preloader End ===== -->
+
+  <!-- ===== Page Wrapper Start ===== -->
+  <div class="flex h-screen overflow-hidden">
+    <!-- ===== Sidebar Start ===== -->
+    {% include 'siteadmin/sidebar.html' %}
+    <!-- ===== Sidebar End ===== -->
+
+    <!-- ===== Content Area Start ===== -->
+    <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+      <!-- ===== Header Start ===== -->
+      {% include 'siteadmin/header.html' %}
+      <!-- ===== Header End ===== -->
+
+      <div class='px-7 py-5'>
+        {% block admin_body %}
+        
+        {% endblock admin_body %}
+      </div>
+    </div>
+    <!-- ===== Content Area End ===== -->
+  </div>
+  <!-- ===== Page Wrapper End ===== -->
+</div>
+{% endblock body %}

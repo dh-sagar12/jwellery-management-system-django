@@ -1,0 +1,54 @@
+{% extends 'siteadmin/layout.html' %}
+{% load static %}
+{% block admin_body %}
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+
+<h2 class='text-2xl font-bold py-2'>Manage Inventory</h2>
+<div class='py-2 '>
+  <button class='px-4 py-1 bg-purple-600 text-white'>
+    <a href="{% url 'AddInventoryPage' %}">Add New</a>
+  </button>
+</div>
+<div>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Rate</th>
+      <th>Amount</th>
+      <th>Created By</th>
+    </tr>
+
+    {% for inv in inventory_data %}
+    <tr>
+      <td>{{inv.id}}</td>
+      <td>{{inv.product_id}}</td>
+      <td>{{inv.quantity}}</td>
+      <td>{{inv.rate}}</td>
+      <td>{{inv.amount}}</td>
+      <td>{{inv.created_by}}</td>
+    </tr>
+    {% endfor %}
+
+  </table>
+</div>
+
+{% endblock admin_body %}

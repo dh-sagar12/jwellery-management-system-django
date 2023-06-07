@@ -1,0 +1,69 @@
+{% extends 'home/layout.html' %}
+{% load static %}
+{% block body %}
+
+<footer class='bg-purple-600 text-white mt-auto pt-16 pb-10'>
+    <div class='contact flex flex-wrap justify-around space-y-4 sm:justify-evenly sm:items-center py-3'>
+        <div class='sm:text-center m-0'>
+            <h2 class='text-center  text-xl font-bolder'>Connect Us on</h2>
+            <div class='flex space-x-4 text-white justify-center    text-center'>
+                <a href="">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+        </div>
+        <div class='text-center'>
+            <i class="fas fa-map-marker-alt text-2xl"></i>
+            <h2>Locate Our Outlets</h2>
+        </div>
+
+        <div>
+            <h2>Subscribe Our NewsLetter</h2>
+            <input type="email" name="news_letter" id="news_letter" placeholder='Enter your email'
+                class='bg-transparent border rounded px-2 py-1'>
+        </div>
+    </div>
+    <hr>
+
+    <div class='contact flex flex-wrap justify-around space-y-4 sm:justify-evenly  py-3'>
+        <div class='text-center list-none footer_items'>
+            <h3>POLICIES</h3>
+            <li>
+                <a href='#' class="text-sm text-slate-600	">Warantee Details</a>
+            </li>
+            <li>
+                <a href='#' class="text-sm text-slate-600	">Return Policy</a>
+            </li>
+        </div>
+
+        <div class='text-center list-none footer_items'>
+            <h3>CUSTOMER CARE</h3>
+            <li>
+                <a href='#' class="text-sm text-slate-600	">Call Us</a>
+            </li>
+            <li>
+                <a href='#' class="text-sm text-slate-600	">Email us</a>
+            </li>
+        </div>
+
+        <div class='text-center list-none footer_items'>
+            <h3>WHO ARE WE</h3>
+            <li>
+                <a href='#' class="text-sm text-slate-600	">About Us</a>
+            </li>
+           
+        </div>
+
+    </div>
+
+    <div class="text-center text-sm pt-14">
+        <p>Copyright &copy; Dwarika's Collection. All Right Reserved</p>
+    </div>
+
+</footer>
+
+
+{% endblock body %}
