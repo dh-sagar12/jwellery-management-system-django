@@ -1,0 +1,43 @@
+{% extends 'home/layout.html' %}
+{% load static %}
+
+{% block title %}
+Product- Jwellery Management
+{% endblock title %}
+
+{% block user_body %}   
+    <div class="grid grid-cols-3 px-7">
+        <div class="col-span-1 " >
+            <img src="{{product.images.url}}" alt="" srcset="">
+        </div>
+        <div class="col-span-2 ">
+            <h2 class='text-2xl px-5 py-3'>{{product.product_name}}</h2>
+            <div class='flex justify-around py-3 border  items-center'>
+                <div class= 'font-semibold'>
+                    <p>Price: {{product.price}}</p>
+                </div>
+                <div class='font-semibold'>
+                    <p>Purity: {{product.purity}}</p>
+                </div>
+                <div class='font-semibold'>
+                    <p>weight: {{product.weight}}</p>
+                </div>
+
+            </div>
+            <div  class='px-7 w-1/2 mt-12'>
+                <h2 class='font-sm text-2xl py-4'>Description</h2>
+                <p>{{product.product_description}}</p>
+            </div>
+            <div class="flex px-7 py-4 space-x-5 ">
+                <a href="{% url 'CheckOutPage' product.slug %}" class='border bg-purple-600 text-white px-4'>
+                    <button>Buy Now</button>
+                </a>
+
+                <a href="" class='border bg-purple-600 text-white px-4'>
+                    <button>Wishlist</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+{% endblock user_body %}

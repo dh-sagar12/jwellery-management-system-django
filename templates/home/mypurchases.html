@@ -1,0 +1,68 @@
+{% extends 'home/layout.html' %}
+{% load static %}
+
+{% block title %}
+My Purchases- Jwellery Management
+{% endblock title %}
+
+{% block user_body %}
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+<div class="mx-7">
+  <h2 class='text-2xl font-bold py-2'>My Purchases</h2>
+  <div class="overflow-scroll">
+    <table>
+      <tr>
+        <th>Product</th>
+        <th>quantity</th>
+        <th>total_price</th>
+        <th>customer_name</th>
+        <th>primary_delivery_address</th>
+        <th>secondary_delivery_address</th>
+        <th>postal_code</th>
+        <th>city</th>
+        <th>ordered_date</th>
+        <th>order_staus</th>
+        <th>payment_completed</th>
+      </tr>
+
+      {% for purchase in pruchases %}
+      <tr>
+        <td>{{purchase.product_id}}</td>
+        <td>{{purchase.quantity}}</td>
+        <td>{{purchase.total_price}}</td>
+        <td>{{purchase.customer_name}}</td>
+        <td>{{purchase.primary_delivery_address}}</td>
+        <td>{{purchase.secondary_delivery_address}}</td>
+        <td>{{purchase.postal_code}}</td>
+        <td>{{purchase.city}}</td>
+        <td>{{purchase.ordered_date}}</td>
+        <td>{{purchase.order_staus}}</td>
+        <td>{{purchase.payment_completed}}</td>
+
+      </tr>
+      {% endfor %}
+
+    </table>
+  </div>
+</div>
+
+{% endblock user_body %}

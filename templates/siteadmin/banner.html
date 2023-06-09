@@ -1,0 +1,54 @@
+{% extends 'siteadmin/layout.html' %}
+{% load static %}
+{% block admin_body %}
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+
+<h2 class='text-2xl font-bold py-2'>Manage Feature Products</h2>
+<div class='py-2 '>
+  <button class='px-4 py-1 bg-purple-600 text-white'>
+    <a href="{% url 'AddFeatureProductPage' %}">Add New</a>
+  </button>
+</div>
+<div>
+  <table>
+    <tr>
+        <th>S.N </th>
+        <th>Image </th>
+        <th>URL </th>
+        <th>Redirect URL </th>
+        <th>Active </th>
+    </tr>
+
+    {% for banner in banners_data %}
+    <tr>
+      <td><a href="{% url 'EditBannerImages' banner.id %}" class='hover:underline semi-bold'>{{banner.id}}</a></td>
+      <td>
+        <img src="{{banner.banner_image.url}}" alt="banner image" width=50 height=70>
+    </td>
+      <td>{{banner.banner_title}}</td>
+      <td>{{banner.banner_redirect_url}}</td>
+      <td>{{banner.is_active}}</td>
+    </tr>
+    {% endfor %}
+
+  </table>
+</div>
+
+{% endblock admin_body %}

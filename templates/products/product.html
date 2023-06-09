@@ -1,0 +1,94 @@
+{% extends 'home/layout.html' %}
+{% load static %}
+
+{% block title %}
+Product- Jwellery Management
+{% endblock title %}
+
+{% block user_body %}
+<div class='grid  grid-cols-1'>
+    <div class="col-span-1 bg-grey-200 my-9 border p-3 bg-gray-100 shadow-md ">
+        <div class='flex justify-between'>
+            <div>
+                <p class="font-bold">Filter By </p>
+            </div>
+            <div>
+                <select class="border shadow-md p-1 focus:outline-none outline-none">
+                    <option selected>Sort</option>
+                    <option value="a-z">Title(a-z)</option>
+                    <option value="z-a">Title(z-a)</option>
+                    <option value="z-a">Date(Newest)</option>
+                    <option value="z-a">Date(Oldest)</option>
+                    <option value="z-a">Price(Highest)</option>
+                    <option value="z-a">Price(Lowest)</option>
+                    <option value="z-a">Purity(Highest)</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-span-1">
+        <div class="grid grid-cols-4">
+            <form method="get">
+                <div class="col-span-1 border py-6">
+                    <div class="">
+                        <h3 class="py-2 font-bold text-center">Price</h3>
+                        <div class="flex space-x-3 px-4 bg-transparent	">
+                            <input type="number" placeholder="From" class="w-2/3 border px-1 " name="from_price">
+                            <input type="number" placeholder="To" class="w-2/3 border  px-1" name="to_price">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+
+                    <div class="">
+                        <h3 class="py-2 font-bold text-center">Purity</h3>
+                        <div class="flex space-x-3 px-4 bg-transparent	">
+                            <select class="border  p-1 focus:outline-none outline-none w-full mx-6" name="purity">
+                                <OPtion value=''>Purity</OPtion>
+                                <option value="24KT">24KT</option>
+                                <option value="22KT">22KT</option>
+                                <option value="14KT">14KT</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="text-center my-5 shadow-md bg-purple-600 w-1/2 mx-auto text-white hover:shadow-lg">
+                        <button type="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+            <div class="col-span-3 ">
+                <h1 class="text-3xl font-bold px-6 pb-6"> {% if category %}<span>{{category.category_name}}</span>{% endif %} Products</h1>
+                <div class="grid grid-cols-4  gap-2 mx-1">
+
+                    <!-- product list  -->
+                    
+
+
+                {% for product in products %}
+                <div class="border shaodow-lg shadow cursor-pointer py-4">
+                    <div class=" overflow-hidden" style="min-height: 200px;" >
+                            <a href="{% url 'ViewProductPage' product.slug %}">
+                            <img src="{{product.images.url}}" class="feature_items"
+                                alt="">
+                            </a>
+                        </div>
+                        <h3 class="text-center  font-semibold text-lg pt-5">{{product.product_name}}</h3>
+                        <p class="text-center">Price: Rs. {{product.price}}</p>
+                        <div class="flex justify-between mx-5 items-center">
+                            <a href="" class="border bg-purple-600 text-white rounded-md rounded shadow shadow-lg hover:bg-purple-500   w-2/3 text-center">
+                                <a href="{% url 'CheckOutPage' product.slug %}"><button>Buy</button></a>
+                            </a>
+                            <button>
+                                <i class="far fa-heart text-2xl text-red-600"></i>
+                            </button>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock user_body %}

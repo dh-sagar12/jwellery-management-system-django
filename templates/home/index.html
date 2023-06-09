@@ -50,8 +50,8 @@ Home- Jwellery Management
 
             {% for items  in other_feature_item %}
 
-            <div class='border col-span-1  flex items-end  relative top-0 cursor-pointer overflow-hidden feature_items'>
-                <img src="{{items.feature_image.url}}" class=" rounded-md feature_items" >
+            <div class='border col-span-1  flex items-end  relative top-0 cursor-pointer overflow-hidden '>
+                <img src="{{items.feature_image.url}}" class=" rounded-md feature_img" >
                 <div class="text-white  flex-col space-y-3 p-4 absolute w-full h-full hidden feature_para bg-purple-300" >
                     <h3 class="text-2xl">{{items.title}}</h3>
                     <p class="text-sm">{{items.description}}</p>
@@ -60,14 +60,43 @@ Home- Jwellery Management
             </div>
 
             {% endfor %}
-            
-
-            
 
         </div>
     </div>
+</div>
+    
+<hr class='my-2'>
 
+<div>
+    <h3 class='text-center text-2xl sm:text-3xl font-dwarika my-9'>Popular Product</h3>
 
+    <div class="col-span-3 ">
+        <div class="grid grid-cols-4  gap-2 mx-1">
+
+            <!-- product list  -->
+
+        {% for product in products %}
+        <div class="border shaodow-lg shadow cursor-pointer py-4">
+            <div class=" overflow-hidden" style="min-height: 200px;" >
+                    <a href="{% url 'ViewProductPage' product.slug %}">
+                    <img src="{{product.images.url}}" class="feature_items"
+                        alt="">
+                    </a>
+                </div>
+                <h3 class="text-center  font-semibold text-lg pt-5">{{product.product_name}}</h3>
+                <p class="text-center">Price: Rs. {{product.price}}</p>
+                <div class="flex justify-between mx-5 items-center">
+                    <a href="{% url 'CheckOutPage' product.slug %}" class="border bg-purple-600 text-white rounded-md rounded shadow shadow-lg hover:bg-purple-500   w-2/3 text-center">
+                        <button>Buy</button></a>
+                    </a>
+                    <button>
+                        <i class="far fa-heart text-2xl text-red-600"></i>
+                    </button>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
 </div>
 
 <script>

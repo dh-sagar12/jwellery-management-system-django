@@ -1,0 +1,52 @@
+{% extends 'siteadmin/layout.html' %}
+{% load static %}
+{% block admin_body %}
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+
+<h2 class='text-2xl font-bold py-2'>Manage Feature Products</h2>
+<div class='py-2 '>
+  <button class='px-4 py-1 bg-purple-600 text-white'>
+    <a href="{% url 'AddFeatureProductPage' %}">Add New</a>
+  </button>
+</div>
+<div>
+  <table>
+    <tr>
+        <th>Title </th>
+        <th>Description </th>
+        <th>URL </th>
+        <th>Active </th>
+        <th>Is Main </th>
+    </tr>
+
+    {% for feature_product in feature_product_data %}
+    <tr>
+      <td><a href="{% url 'EditFeatureProduct' feature_product.id %}" class='hover:underline semi-bold'>{{feature_product.title}}</a></td>
+      <td>{{feature_product.description}}</td>
+      <td>{{feature_product.redirect_url}}</td>
+      <td>{{feature_product.is_active}}</td>
+      <td>{{feature_product.is_main}}</td>
+    </tr>
+    {% endfor %}
+
+  </table>
+</div>
+
+{% endblock admin_body %}

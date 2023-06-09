@@ -1,0 +1,60 @@
+{% extends 'home/layout.html' %}
+{% load static %}
+
+{% block title %}
+Checkout- Jwellery Management
+{% endblock title %}
+
+{% block user_body %}
+<div class="grid grid-cols-3 px-7">
+    <div class="col-span-1 ">
+        <img src="{{product.images.url}}" alt="" srcset="">
+        <h3 class='text-center text-2xl font-bold pt-4'>{{product.product_name}}</h3>
+        <p class='text-center text-xl py-3'>{{product.product_description}}</p>
+        <p class='text-center text-xl'>Price: {{product.price}}</p>
+        <p class='text-center text-xl'>Purity: {{product.purity}}</p>
+    </div>
+    <div class="col-span-2  my-6 mx-3 ">
+        <form action="" method='post'>
+            {% csrf_token %}
+            <h1 class='text-xl font-bold'>Complete The Form To Make an Order</h1>
+            <div class='pt-5 grid grid-cols-2 w-full gap-5'>
+                <div>
+                    {{form.customer_name}}
+                    <span>{{form.customer_name.errors}}</span>
+                </div>
+                <div>
+                    {{form.primary_delivery_address}}
+                    <span>{{form.primary_delivery_address.errors}}</span>
+                </div>
+                <div>
+                    {{form.quantity}}
+                    <span>{{form.quantity.errors}}</span>
+                </div>
+                <div></div>
+                <div>
+                    {{form.secondary_delivery_address}}
+                    <span>{{form.secondary_delivery_address.errors}}</span>
+                </div>
+                <div>
+                    {{form.postal_code}}
+                    <span>{{form.postal_code.errors}}</span>
+                </div>
+                <div>
+                    {{form.city}}
+                    <span>{{form.city.errors}}</span>
+                </div>
+                {% comment %} <div>
+                    {{form.product_id}}
+                    <span>{{form.city.errors}}</span>
+                </div> {% endcomment %}
+            </div>
+            <div class='my-3'>
+                <button type="submit" class='border bg-purple-600 text-white px-4'>Order Now</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock user_body %}
