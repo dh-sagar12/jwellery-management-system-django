@@ -1,5 +1,5 @@
 from django.urls import path
-from product.views import AddCategoryPage, AddInventoryPage, ManageCategoryPage, EditCategory, ManageInventoryPage, ManageProductPage, AddProductPage, EditProduct
+from product.views import AddCategoryPage, AddInventoryPage, EditOrders, ManageCategoryPage, EditCategory, ManageInventoryPage, ManageOrdersPage, ManageProductPage, AddProductPage, EditProduct
 from .views import AddBannerImagesPage, AddFeatureProductPage, EditBannerImages, EditFeatureProduct, ManageBannerImagesPage, ManageFeatureProductPage, SettingPage, AdminHomePage
 
 
@@ -20,6 +20,9 @@ urlpatterns = [
     path('featureproduct/<int:id>', EditFeatureProduct, name='EditFeatureProduct'),
     path('bannerimage/', ManageBannerImagesPage, name='ManageBannerImagesPage'), 
     path('bannerimage/new', AddBannerImagesPage, name='AddBannerImagesPage'), 
-    path('bannerimage/<int:id>', EditBannerImages, name='EditBannerImages')
+    path('bannerimage/<int:id>', EditBannerImages, name='EditBannerImages'), 
+
+    path('orders/', ManageOrdersPage, name='ManageOrdersPage'), 
+    path('orders/<int:id>', EditOrders, name='EditOrders')
 
 ]

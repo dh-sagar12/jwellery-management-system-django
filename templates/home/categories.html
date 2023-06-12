@@ -1,0 +1,31 @@
+{% extends 'home/layout.html' %}
+{% load static %}
+
+{% block title %}
+Categories- Jwellery Management
+{% endblock title %}
+
+{% block user_body %}
+
+<h2 class='text-2xl font-bold py-4 mx-7 '>All Categories</h2>
+
+
+<div class="mx-7 grid grid-cols-7 gap-3">
+
+    <div class="col-span-3 flex flex-col space-y-3">
+            {% for category in categories  %}
+                <div class='border border-purple-600 rounded-md rounded 3 relative'>
+                    <a href="{% url 'CategoryProductPage' category.category_url_name %}">
+                        <div class='flex space-x-7'>
+                            <div class='flex flex-col space-y-1'>
+                                <p class='font-semibold text-xl'>{{category.category_name}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+    </div>
+
+</div>
+
+{% endblock user_body %}

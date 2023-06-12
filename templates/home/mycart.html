@@ -1,0 +1,106 @@
+{% extends 'home/layout.html' %}
+{% load static %}
+
+{% block title %}
+My Cart- Jwellery Management
+{% endblock title %}
+
+{% block user_body %}
+
+<h2 class='text-2xl font-bold py-4 mx-7 '>My Cart</h2>
+
+
+<div class="mx-7 grid grid-cols-7 gap-3">
+
+    {% if cart_items %}
+
+
+    <div class="col-span-3 flex flex-col space-y-3">
+            {% for cart in cart_items  %}
+                <div class='border border-purple-600 rounded-md rounded 3 relative'>
+                    <a href="{% url 'ViewProductPage' cart.product_id.slug %}">
+                        <div class='flex space-x-7'>
+                            <div>
+                                <img src="{{cart.product_id.images.url}}" height=100 width=100 alt="" class='rounded rounded-md'>
+                            </div>
+                            <div class='flex flex-col space-y-1'>
+                                <p class='font-semibold text-xl'>{{cart.product_id.product_name}}</p>
+                                <p class='text-xs'>{{cart.product_id.product_description|truncatechars:60| safe}}</p>
+                                <p class='text-sm'>Price: Rs. {{cart.product_id.price}}</p>
+                            </div>
+                            <div>
+                                <form action="{% url 'RemoveCartItem' cart.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="number" name="product_id" value='{{cart.id}}' hidden>
+                                    <button type="submit"  class='absolute' style="top: 0%; left: 95%;">
+                                        <i class="fas fa-times text-2xl text-red-600"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+    </div>
+
+    <div class="col-span-4  my-6 mx-3 ">
+        <form action="" method='post'>
+            {% csrf_token %}
+            <h1 class='text-xl font-bold'>Complete The Form To Make an Order</h1>
+            <div class='pt-5 grid grid-cols-2 w-full gap-5'>
+                <div>
+                    {{form.customer_name}}
+                    <span>{{form.customer_name.errors}}</span>
+                </div>
+                <div>
+                    {{form.primary_delivery_address}}
+                    <span>{{form.primary_delivery_address.errors}}</span>
+                </div>
+                <div>
+                    {{form.quantity}}
+                    <span>{{form.quantity.errors}}</span>
+                </div>
+                <div></div>
+                <div>
+                    {{form.secondary_delivery_address}}
+                    <span>{{form.secondary_delivery_address.errors}}</span>
+                </div>
+                <div>
+                    {{form.postal_code}}
+                    <span>{{form.postal_code.errors}}</span>
+                </div>
+                <div>
+                    {{form.city}}
+                    <span>{{form.city.errors}}</span>
+                </div>
+                {% for cart in  cart_items  %}
+                    <input type="number" name='product[]' value={{cart.product_id.id}} class='text-purple-600' hidden  >
+                {% endfor %}
+
+                {% comment %} <div>
+                    {{form.product_id}}
+                    <span>{{form.city.errors}}</span>
+                </div> {% endcomment %}
+            </div>
+            <div class='my-3'>
+                <button type="submit" class='border bg-purple-600 text-white px-4'>Order All Now</button>
+            </div>
+
+        </form>
+    </div>
+
+    {% else %}
+        <div class='text-center col-span-7 py-5'>
+            <p class='py-5'>No Item To Show</p>
+            <a href="{% url 'home' %}">
+                <button type="submit" class='border bg-purple-600 text-white px-4'>ADD NOW</button>
+            </a>
+         </div>
+    {% endif %}
+
+</div>
+
+</div>
+
+
+{% endblock user_body %}

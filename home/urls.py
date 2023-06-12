@@ -19,4 +19,8 @@ from . import views
 urlpatterns = [
     path('', views.home, name='home'), 
     path('mypurchases/', views.MyPurchases, name='MyPurchases'), 
+    path('mycart/', views.MyCartPage, name='MyCartPage'), 
+    path('categories/', views.AllCategoriesPage, name='AllCategoriesPage'), 
+    path('postcart/<int:id>', views.PostCartView, name='PostCartView'),
+    path('removecart/<int:id>', views.RemoveCartItem, name='RemoveCartItem'),
 ]

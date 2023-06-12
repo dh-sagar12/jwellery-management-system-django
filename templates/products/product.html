@@ -6,6 +6,9 @@ Product- Jwellery Management
 {% endblock title %}
 
 {% block user_body %}
+
+
+
 <div class='grid  grid-cols-1'>
     <div class="col-span-1 bg-grey-200 my-9 border p-3 bg-gray-100 shadow-md ">
         <div class='flex justify-between'>
@@ -76,19 +79,68 @@ Product- Jwellery Management
                         <h3 class="text-center  font-semibold text-lg pt-5">{{product.product_name}}</h3>
                         <p class="text-center">Price: Rs. {{product.price}}</p>
                         <div class="flex justify-between mx-5 items-center">
-                            <a href="" class="border bg-purple-600 text-white rounded-md rounded shadow shadow-lg hover:bg-purple-500   w-2/3 text-center">
-                                <a href="{% url 'CheckOutPage' product.slug %}"><button>Buy</button></a>
+                            <a href="{% url 'CheckOutPage' product.slug %}" class="border bg-purple-600 text-white rounded-md rounded shadow shadow-lg hover:bg-purple-500   w-2/3 text-center">
+                                <button>Buy</button>
                             </a>
-                            <button>
-                                <i class="far fa-heart text-2xl text-red-600"></i>
-                            </button>
+                                <button type="submit" id="product_{{product.id|stringformat:"s"}}" onclick="AddRemoveCart( '{{ product.id|stringformat:"s" }}' )">
+                                    <i class=" {% if product in user_cart %} fas {% else %} far {% endif %} fa-heart text-2xl text-red-600" id="cart_btn_{{product.id|stringformat:"s"}}"></i>
+                                </button>
                         </div>
                     </div>
                 {% endfor %}
-                </div>
+            </div>
+
+            <div class='flex justify-between mx-4 my-4'>
+                {% if products.has_previous %}
+                    <form action="" method="get" >
+                        <input type="number" value="{{products.previous_page_number}}" name='page' hidden>
+                        <button type="submit" class='border px-2 py-1 bg-purple-600 text-white rounded-md rounded shadow shadow-lg hover:bg-purple-500   text-center'>Previous</button>
+                    </form>
+                {% endif %}
+        
+                {% if products.has_next %}
+                    <form action="" method="get">
+                        <input type="number" value="{{products.next_page_number}}" name='page' hidden>
+                        <button type="submit" class='border px-2 py-1 self-end bg-purple-600 text-white rounded-md rounded shadow shadow-lg hover:bg-purple-500   text-center'>Next</button>
+        
+                    </form>        
+                {% endif %}
+             </div>
+
             </div>
         </div>
     </div>
 </div>
+
+{% csrf_token %}
+<script>
+    function AddRemoveCart(id) {
+      var element = "#product_" + id
+      var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+      let cart_btn =   "#cart_btn_" + id
+      $.ajax({
+        url: '/postcart/' + id,
+        type: 'POST',
+        contentType: 'application/json',
+        beforeSend: function (xhr){
+            xhr.setRequestHeader('X-CSRFToken', csrftoken);
+          },
+        success: function(data) {
+          console.log(data);
+          if ($(cart_btn).hasClass("far")) {
+            $(cart_btn).removeClass("far");
+            $(cart_btn).addClass("fas");
+          } else {
+            $(cart_btn).removeClass("fas");
+            $(cart_btn).addClass("far");
+          }
+        },
+        error: function(jqXhr, textStatus, errorThrown) {
+          console.log(errorThrown);
+        }
+      });
+    }
+  </script>
+  
 
 {% endblock user_body %}

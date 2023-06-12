@@ -1,0 +1,70 @@
+{% extends 'siteadmin/layout.html' %}
+{% load static %}
+{% block title %}
+    Orders-Dwarika's Collections
+{% endblock title  %}
+{% block admin_body %}
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;  
+    text-align: left;
+    padding: 8px;
+    white-space: nowrap;
+
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+
+<h2 class='text-2xl font-bold py-2'>Manage Inventory</h2>
+<div class='py-2 '>
+  <button class='px-4 py-1 bg-purple-600 text-white'>
+    <a href="{% url 'AddInventoryPage' %}">Add New</a>
+  </button>
+</div>
+<div  class="overflow-scroll ">
+    <table>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Total Price</th>
+          <th>Customer Name</th>
+          <th>Address Line 1</th>
+          <th>Address Line 2</th>
+          <th>Postal Code</th>
+          <th>City</th>
+          <th>Ordered Date</th>
+          <th>Status</th>
+          <th>Payment Completed</th>
+        </tr>
+  
+        {% for order in order_data %}
+        <tr>
+          <td><a href="{% url 'EditOrders' order.id %}" class='hover:underline semi-bold'>{{order.product_id}}</a></td>    
+          <td>{{order.quantity}}</td>
+          <td>{{order.total_price}}</td>
+          <td>{{order.customer_name}}</td>
+          <td>{{order.primary_delivery_address}}</td>
+          <td>{{order.secondary_delivery_address}}</td>
+          <td>{{order.postal_code}}</td>
+          <td>{{order.city}}</td>
+          <td>{{order.ordered_date}}</td>
+          <td>{{order.order_staus}}</td>
+          <td>{{order.payment_completed}}</td>
+  
+        </tr>
+        {% endfor %}
+  
+      </table>
+</div>
+
+{% endblock admin_body %}

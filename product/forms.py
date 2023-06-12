@@ -64,13 +64,10 @@ class OrderDetailForm(forms.ModelForm):
                 visible.field.widget.attrs['class'] = 'block  px-4 py-2 mt-2 text-purple-600 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40 w-full'
 
     # product_id  =  forms.CharField(required=False)
-    total_price  =  forms.CharField(required=False)
-    order_staus  =  forms.CharField(required=False)
-    payment_completed  =  forms.CharField(required=False)
 
     class Meta:
         model  =  OrderDetailModel
-        fields  =  (  'quantity',  'customer_name', 'primary_delivery_address', 'secondary_delivery_address', 'postal_code', 'city', 'order_staus', 'payment_completed'
+        fields  =  (  'quantity',  'customer_name', 'primary_delivery_address', 'secondary_delivery_address', 'postal_code', 'city'
         )
         widgets= {
             'customer_name': forms.TextInput(attrs= {'placeholder': 'Enter Your Name'}),
@@ -80,4 +77,24 @@ class OrderDetailForm(forms.ModelForm):
             'postal_code': forms.TextInput(attrs={'placeholder': 'Postal Code'} ),
             'city': forms.TextInput(attrs={'placeholder': 'City'} )
         }
+
+
+
+class OrderDetailsFormAdminSide(forms.ModelForm):
+     
+    def __init__(self, *args, **kwargs):
+        super(OrderDetailsFormAdminSide, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'block  px-4 py-2 mt-2 text-purple-600 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40'
+            if visible.field.widget.attrs['class'] in ('payment_completed', 'order_staus' ):
+                visible.field.widget.attrs['disabled'] = False
+            else:
+                visible.field.widget.attrs['disabled'] = True
+
+
+
+
+    class Meta:
+        model  =  OrderDetailModel
+        fields=  '__all__'
 

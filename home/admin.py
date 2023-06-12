@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BannerImagesModel, FeatureProductModel
+from .models import BannerImagesModel, FeatureProductModel, MyCart
 
 # Register your models here.
 
@@ -23,3 +23,7 @@ class FeatureProductAdmin(admin.ModelAdmin):
 'is_active', 
 'is_main'
     )
+
+
+
+admin.site.register(MyCart)

@@ -13,12 +13,16 @@ My Purchases- Jwellery Management
     width: 100%;
 
   }
+  
+
 
   td,
   th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+    white-space: nowrap;
+    
 
   }
 
@@ -32,16 +36,16 @@ My Purchases- Jwellery Management
     <table>
       <tr>
         <th>Product</th>
-        <th>quantity</th>
-        <th>total_price</th>
-        <th>customer_name</th>
-        <th>primary_delivery_address</th>
-        <th>secondary_delivery_address</th>
-        <th>postal_code</th>
-        <th>city</th>
-        <th>ordered_date</th>
-        <th>order_staus</th>
-        <th>payment_completed</th>
+        <th>Quantity</th>
+        <th>Total Price</th>
+        <th>Customer Name</th>
+        <th>Address Line 1</th>
+        <th>Address Line 2</th>
+        <th>Postal Code</th>
+        <th>City</th>
+        <th>Ordered Date</th>
+        <th>Status</th>
+        <th>Payment Completed</th>
       </tr>
 
       {% for purchase in pruchases %}
